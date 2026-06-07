@@ -12,6 +12,16 @@ npm -v # Should print "11.13.0".
 Install playwright using 
  npm init playwright@latest
 
+ Ways of running test
+ 1. Runs all test : npx playwright test 
+ 2. Runs test in UI mode : innpx playwright test 2.4.contact.spec.ts --ui
+ 3. Runs specific test npx playwright test tests/2.4.contact.spec.ts -g "2.4 Contact Form Submission"
+ 4. Run test from Test Explorer
+
+ Using Codegen
+ Launch site with codegen: npx playwright codegen https://jupiter.cloud.planittesting.com/#/contact
+
+
 Test Cases
 2.1 Navigate To HomePage
  Navigate to a website  and verify the title of the page
@@ -31,4 +41,4 @@ Pwd: letmein
 1. Navigate to https://jupiter.cloud.planittesting.com/#/
 2. Click contact link
 
-2.6 Implement BaseClass for get title method
+2.6 Implement BaseClass for getTitle() method
