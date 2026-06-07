@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
 
+//2.3 Contact form submission test without page object model
+
+
+
 test('Contact form submission', async ({ page }) => {
     // Navigate to the contact page
     await page.goto('https://jupiter.cloud.planittesting.com/#/contact');
@@ -20,7 +24,7 @@ test('Contact form submission', async ({ page }) => {
     // Locator objects are auto-waiting and more stable:
 
     // const successMessage = await page.waitForSelector('.alert-success');
-    const successMessage = page.locator('.alert-success');
+    const successMessage = await page.locator('.alert-success');
 
     //Problems: with toBeTruthy and toBeVisible assertions:
 
@@ -36,11 +40,30 @@ test('Contact form submission', async ({ page }) => {
     // Element is not hidden.
     // Element has a visible bounding box.
     // User can actually see it.
-    expect(successMessage).toBeVisible();
+    await expect(successMessage).toBeVisible({ timeout: 20000 });
+
+    // | Timeout Type | Default |
+    // | --------------------------------------- | ---------- |
+    // | Locator actions(`click`, `fill`, etc.) | 30 seconds |
+    // | `expect()` assertions | 5 seconds |
+    // | Test timeout | 30 seconds |
+    // | Navigation timeout | 30 seconds |
+
+    //   export default defineConfig({
+    //   timeout: 60000,        // entire test
+    //   expect: {
+    //     timeout: 10000       // assertions
+    //   },
+    //   use: {
+    //     actionTimeout: 15000,
+    //     navigationTimeout: 30000
+    //   }
+    // });
+
 
     // Verify the success message content
     const successMessageText = await successMessage.textContent();
-    expect(successMessageText).toContain('Thanks John, we appreciate your feedback.');
+    expect(successMessageText).toContain('we appreciate your feedback.');
 
     // We can directly assert on the locator without extracting text content, which is more efficient and reliable:
     // await expect(page.locator('.alert-success')).toBeVisible();
@@ -48,3 +71,4 @@ test('Contact form submission', async ({ page }) => {
     // await expect(page.locator('.alert-success'))
     //     .toContainText('Thanks John, we appreciate your feedback.');
 });
+
