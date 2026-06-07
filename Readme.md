@@ -26,3 +26,7 @@ Pwd: letmein
 2.4 Submit Contact Form with POM
 1. Navigate to https://jupiter.cloud.planittesting.com/#/contact
 2. Fill the form and submit
+
+2.5 Navigate to Home Page with POM & Navigate to Contact Page from Home Page
+1. Navigate to https://jupiter.cloud.planittesting.com/#/
+2. Click contact link

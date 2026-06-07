@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../page-objects/HomePage';
 
-//Navigate to a website and verify the title of the page
+
+/* 2.1 Navigate to a website and verify the title of the page
 test('home page title', async ({ page }) => {
   // Navigate to a website
   await page.goto('https://jupiter.cloud.planittesting.com/#/');
@@ -11,4 +13,23 @@ test('home page title', async ({ page }) => {
 
   // Add an assertion on the page title
   expect(title).toBe('Jupiter Toys');
+});
+
+*/
+
+// 2.5 Navigate to home page with POM
+test('home page title', async ({ page }) => {
+
+    const homePage = new HomePage(page)
+    // Navigate to a website
+    //   await page.goto('https://jupiter.cloud.planittesting.com/#/');
+
+    await homePage.navigate()
+
+    // Interact with the page
+    const title = await page.title();
+    console.log(`Title: ${title}`);
+
+    // Add an assertion on the page title
+    expect(title).toBe('Jupiter Toys');
 });
