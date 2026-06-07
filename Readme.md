@@ -30,3 +30,5 @@ Pwd: letmein
 2.5 Navigate to Home Page with POM & Navigate to Contact Page from Home Page
 1. Navigate to https://jupiter.cloud.planittesting.com/#/
 2. Click contact link
+
+2.6 Implement BaseClass for get title method

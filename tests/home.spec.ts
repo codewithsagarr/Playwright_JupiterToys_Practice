@@ -27,7 +27,8 @@ test('home page title', async ({ page }) => {
     await homePage.navigate()
 
     // Interact with the page
-    const title = await page.title();
+    // const title = await page.title();
+    const title = await homePage.getTitle()
     console.log(`Title: ${title}`);
 
     // Add an assertion on the page title
