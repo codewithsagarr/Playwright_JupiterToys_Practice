@@ -1,19 +1,24 @@
 Getting Started
 
+Install Node
+https://nodejs.org/en/download
+
+Verify the Node.js version: (Runtime Env for Running JS)
+node -v # Should print "v24.16.0"
+
+ Verify npm version: (Package manager to install dependency)
+npm -v # Should print "11.13.0".
+
 Install playwright using 
  npm init playwright@latest
 
-Using codegen to identify locator
- npx playwright codegen
- npx playwright codegen https://jupiter.cloud.planittesting.com/#/contact
+Test Cases
+2.1 Scenario
+ Navigate to a website  and verify the title of the page
+https://jupiter.cloud.planittesting.com/#/
+Username: cameron
+Pwd: letmein
 
- Comment the additional browsers while debugging
-
- npx playwright test 2.4 
-
- npx playwright test 2.4 --ui
-
- Running specific test 
- npx playwright test tests/2.4.contact.spec.ts -g "2.4 Contact Form Submission"
-
- 
+2.4 Scenario\
+1. Navigate to https://jupiter.cloud.planittesting.com/#/contact
+2. Fill the form and submit
