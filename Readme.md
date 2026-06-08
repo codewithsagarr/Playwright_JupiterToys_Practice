@@ -42,3 +42,5 @@ Pwd: letmein
 2. Click contact link
 
 2.6 Implement BaseClass for getTitle() method
+
+2.7 Submit Contact Form With Empty field and perform error validation for mandatory field and refactor getUrl()
