@@ -61,9 +61,9 @@ export class HomePage extends BasePage {
         await this.page.getByRole('link', { name: 'Contact' }).click()
     }
 
-    async getUrl(){
-         return this.page.url()
-    }
+    // async getUrl(){
+    //      return this.page.url()
+    // }
 
 
 }

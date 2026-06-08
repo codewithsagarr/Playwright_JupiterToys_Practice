@@ -82,3 +82,17 @@ Playwright can distribute across any test cases across any workers
 
 3.6 Error validation on incorrect browser input
 
+4.1 Login Test Cases
+| Scenario                                | Preferred                                 |
+| --------------------------------------- | ----------------------------------------- |
+| Element visible                         | `await expect(locator).toBeVisible()`     |
+| Element hidden                          | `await expect(locator).toBeHidden()`      |
+| Text validation                         | `await expect(locator).toContainText()`   |
+| Input value                             | `await expect(locator).toHaveValue()`     |
+| Attribute                               | `await expect(locator).toHaveAttribute()` |
+| API JSON, arrays, objects, calculations | Generic `expect()`                        |
+
+Login with valid credentials
+Login with invalid credentials
+Login form empty field validation
+Logout from Jupiter toy
