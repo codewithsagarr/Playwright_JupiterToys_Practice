@@ -1,4 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 /**
  * Read environment variables from file.
@@ -34,7 +38,11 @@ export default defineConfig({
     actionTimeout: 0, //0 means no limit. It will wait until the action is performed. By default, it is 30 seconds. If the action is not performed within that time, it will throw a timeout error. We can change this default timeout by setting the actionTimeout option in the use object.
     navigationTimeout: 0, //0 means no limit. It will wait until the navigation is performed. By default, it is 30 seconds. If the navigation is not performed within that time, it will throw a timeout error. We can change this default timeout by setting the navigationTimeout option in the use object.
 
-    headless: false,
+    // headless: false,
+    // headless: true,
+    headless: process.env.HEADLESS === 'true', // Use the HEADLESS environment variable
+    screenshot: 'only-on-failure', // Take screenshots only on test failure
+
     // Slowdown playwright during demo or debugging, it will wait for 1 second after each action
     launchOptions: {
       slowMo: 1000

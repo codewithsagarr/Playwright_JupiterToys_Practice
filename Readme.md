@@ -44,3 +44,8 @@ Pwd: letmein
 2.6 Implement BaseClass for getTitle() method
 
 2.7 Submit Contact Form With Empty field and perform error validation for mandatory field and refactor getUrl()
+
+3.1 Use Env Variable to run in headless mode
+npm install dotenv
+
+
