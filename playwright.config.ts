@@ -1,18 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
+import{ browserName, deviceType, workers, fullyParallel } from './tests/config/validateEnv'
 
-dotenv.config();
+// dotenv.config();
 
-const workers = process.env.WORKERS ? parseInt(process.env.WORKERS, 10) : undefined;
+// const workers = process.env.WORKERS ? parseInt(process.env.WORKERS, 10) : undefined;
 
-const fullyParallel = process.env.FULLY_PARALLEL === 'true';
+// const fullyParallel = process.env.FULLY_PARALLEL === 'true';
 
 
 //define the browser names we are interested in
-type BrowserName = 'chromium' | 'firefox' | 'webkit';
+// type BrowserName = 'chromium' | 'firefox' | 'webkit';
 
 // read the BROWSER env variable
-const browserName = (process.env.BROWSER || 'chromium') as BrowserName;
+// const browserName = (process.env.BROWSER || 'chromium') as BrowserName;
 
 /* projects without device types
 const projects = [
@@ -33,8 +34,8 @@ const projects = [
 
 
   // define the type of device we are interested in
-type DeviceType = 'desktop' | 'mobile';
-const deviceType = (process.env.DEVICE || 'desktop') as DeviceType;
+// type DeviceType = 'desktop' | 'mobile';
+// const deviceType = (process.env.DEVICE || 'desktop') as DeviceType;
 
 const projects = [
   {

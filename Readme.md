@@ -80,3 +80,5 @@ Now individual tests become schedulable units.
 Order is not guaranteed
 Playwright can distribute across any test cases across any workers
 
+3.6 Error validation on incorrect browser input
+
