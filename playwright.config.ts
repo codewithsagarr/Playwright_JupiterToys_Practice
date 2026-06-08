@@ -9,6 +9,7 @@ type BrowserName = 'chromium' | 'firefox' | 'webkit';
 // read the BROWSER env variable
 const browserName = (process.env.BROWSER || 'chromium') as BrowserName;
 
+/* projects without device types
 const projects = [
   {
     name: 'chromium',
@@ -22,7 +23,27 @@ const projects = [
     name: 'webkit',
     use: { ...devices['Desktop Safari'] },
   }];
+*/
 
+
+
+  // define the type of device we are interested in
+type DeviceType = 'desktop' | 'mobile';
+const deviceType = (process.env.DEVICE || 'desktop') as DeviceType;
+
+const projects = [
+  {
+    name: 'chromium',
+    use: deviceType === 'desktop' ? { ...devices['Desktop Chrome'] } : { ...devices['Pixel 5'] },
+  },
+  {
+    name: 'firefox',
+    use: { ...devices['Desktop Firefox'] }, 
+  },
+  {
+    name: 'webkit',
+    use: deviceType === 'desktop' ? { ...devices['Desktop Safari'] } : { ...devices['iPhone 12'] },
+}];
 
 /**
  * Read environment variables from file.

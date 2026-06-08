@@ -51,6 +51,8 @@ npm install dotenv
 3.2, 3.3 Create Env varible for BROWSER=firefox and use that to run test
 and run test on specific browser by readinbg from env variable
 
+3.4 Executing test on various device
+
 
 
 
