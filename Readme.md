@@ -53,6 +53,30 @@ and run test on specific browser by readinbg from env variable
 
 3.4 Executing test on various device
 
+3.5 FullyParallel and Workers
+File A
+test('TC1')
+test('TC2')
+test('TC3')
 
+File B
+test('TC4')
 
+workers: 2
+
+Scenario 1: fullyParallel: false
+
+Test files run in parallel.
+Tests within the same file run sequentially.
+
+| Worker 1     | Worker 2     |
+| ------------ | ------------ |
+| File A - TC1 | File B - TC4 |
+| File A - TC2 | Idle         |
+| File A - TC3 | Idle         |
+
+Scenario 2: fullyParallel: true
+Now individual tests become schedulable units.
+Order is not guaranteed
+Playwright can distribute across any test cases across any workers
 

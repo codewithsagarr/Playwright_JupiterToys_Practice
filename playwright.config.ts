@@ -3,6 +3,11 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const workers = process.env.WORKERS ? parseInt(process.env.WORKERS, 10) : undefined;
+
+const fullyParallel = process.env.FULLY_PARALLEL === 'true';
+
+
 //define the browser names we are interested in
 type BrowserName = 'chromium' | 'firefox' | 'webkit';
 
@@ -59,14 +64,18 @@ const projects = [
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  // fullyParallel: true,
+  fullyParallel: fullyParallel, // Set fullyParallel based on the FULLY_PARALLEL environment variable
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 3,
+  //Below performs 3 retries
+  retries: process.env.CI ? 2 : 3, 
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  //  workers: 2,
+  // workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  workers: workers, // Set the number of workers based on the WORKERS environment variable
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
