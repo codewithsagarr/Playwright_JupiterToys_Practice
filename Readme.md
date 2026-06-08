@@ -48,4 +48,9 @@ Pwd: letmein
 3.1 Use Env Variable to run in headless mode
 npm install dotenv
 
+3.2, 3.3 Create Env varible for BROWSER=firefox and use that to run test
+and run test on specific browser by readinbg from env variable
+
+
+
 
