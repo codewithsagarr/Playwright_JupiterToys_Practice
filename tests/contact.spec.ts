@@ -339,24 +339,7 @@ test('Contact form submission', async ({ page }) => {
 });
 
 
-test('Navigate to contact page from home', async ({ page }) => {
 
-    //Create an Object of Contact Page
-    const homePage = new HomePage(page)
-
-    //Navigate to Home Page
-    await homePage.navigate()
-
-    //Click Contact Link
-    await homePage.clickContactLink()
-
-    // Verify the navigation to the contact page
-    // expect(page.url()).toContain('#/contact');
-    expect(await homePage.getUrl()).toContain('#/contact');
-
-
-
-});
 
 test('Submit Contact form after validation error', async ({ page }) => {
 

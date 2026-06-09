@@ -96,3 +96,7 @@ Login with valid credentials
 Login with invalid credentials
 Login form empty field validation
 Logout from Jupiter toy
+
+
+4.2 Utilising test.describe and beforeEach hook to optimise repeated code
+
