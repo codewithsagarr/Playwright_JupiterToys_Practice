@@ -100,3 +100,5 @@ Logout from Jupiter toy
 
 4.2 Utilising test.describe and beforeEach hook to optimise repeated code
 
+4.3 Navigate to Contact Page and Submit form Improve framework by using Fixtures
+

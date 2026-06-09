@@ -1,7 +1,11 @@
+
+
+/* 4.1 Login Test Cases with POM
+
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../page-objects/HomePage';
 
-/* 4.1 Login Test Cases with POM
+
 test('Login with valid credentials', async ({ page }) => {
 
     const homePage = new HomePage(page)
@@ -160,6 +164,11 @@ test('Logout from Jupiter toy', async ({ page }) => {
 
 })*/
 
+
+/* 4.2 Login tests with POM & Test Describe
+
+import { test, expect } from '@playwright/test';
+import { HomePage } from '../page-objects/HomePage';
 
 test.describe('Login Tests', () => {
 
@@ -333,6 +342,70 @@ test.describe('Login Tests', () => {
 
     })
 })
+
+*/
+
+import { test, expect } from './fixtures/fixtures';
+
+test.describe('Login Tests', () => {
+
+  test('Login with valid credentials', async ({ homePage }) => {
+    // Perform 6
+    await homePage.login('Cameron', 'letmein');
+
+    // retrieve the current URL
+    const currentUrl = await homePage.getUrl();
+    
+    // Verify the navigation back to the home page
+    expect(currentUrl).toContain('#/');
+
+    // retrieve the current username
+    const usernameText = await homePage.getUsername();
+
+    // Verify the username is displayed correctly
+    expect(usernameText).toBe('Cameron');
+  });
+
+  test('Login with invalid credentials', async ({ homePage }) => {
+    // Perform login with invalid credentials
+    await homePage.login('Cameron', 'Pleaseletmein');
+
+    // Verify error message
+    const errorMessage = await homePage.getErrorMessage();
+    expect(errorMessage).toContain('Your login details are incorrect'); // Adjust this based on the actual error message
+  });
+
+  test('Login form empty field validation', async ({ homePage }) => {
+      // Perform login
+      await homePage.login('', '');
+    
+      // Verify error message
+      const errorMessage = await homePage.getErrorMessage();
+      expect(errorMessage).toContain('Your login details are incorrect'); 
+  });
+
+
+  test('Logout from jupiter toys', async ({ homePage }) => {
+    // Perform login
+    await homePage.login('Cameron', 'letmein');
+
+    // retrieve the current username
+    const usernameText = await homePage.getUsername();
+
+    // Verify the username is displayed correctly
+    expect(usernameText).toBe('Cameron');
+
+    // logout from the application
+    await homePage.logout();
+
+    // retrieve the current username
+    const loginButtonText = await homePage.getLoginButtonText();
+
+    // Verify the username is displayed correctly
+    expect(loginButtonText).toBe('Login');
+  });
+
+});
 
 
 

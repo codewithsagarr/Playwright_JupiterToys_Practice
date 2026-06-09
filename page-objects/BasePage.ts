@@ -65,6 +65,12 @@ export class BasePage {
         await this.page.locator('a').filter({ hasText: /^Logout$/ }).click();
     }
 
+    async getSuccessMessage() {
+        const successMessage = await this.page.waitForSelector('.alert-success');
+        return successMessage.textContent();
+    }
+
+
 
 
 

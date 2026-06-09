@@ -1,8 +1,11 @@
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../page-objects/HomePage';
+
 
 
 /* 2.1 Navigate to a website and verify the title of the page
+
+import { test, expect } from '@playwright/test';
+import { HomePage } from '../page-objects/HomePage';
+
 test('home page title', async ({ page }) => {
   // Navigate to a website
   await page.goto('https://jupiter.cloud.planittesting.com/#/');
@@ -19,6 +22,8 @@ test('home page title', async ({ page }) => {
 
 /* 2.5 Navigate to home page with POM
 
+import { test, expect } from '@playwright/test';
+import { HomePage } from '../page-objects/HomePage';
 
 test('home page title', async ({ page }) => {
 
@@ -57,6 +62,11 @@ test('Navigate to contact page from home', async ({ page }) => {
 });
 
 */
+
+/* 4.2 Home Page with BeforeEach and Test.Describe
+
+import { test, expect } from '@playwright/test';
+import { HomePage } from '../page-objects/HomePage';
 
 test.describe('Home Tests', () => {
     let homePage: HomePage;
@@ -107,4 +117,34 @@ test.describe('Home Tests', () => {
     });
 
 });
+
+*/
+
+//4.3 Home Page with Fixtures
+
+import { test, expect } from './fixtures/fixtures';
+
+test.describe('Home Tests', () => {
+
+  test('home page title', async ({ homePage }) => {
+    // Interact with the page
+    const title = await homePage.getTitle();
+
+    // Add an assertion on the page title
+    expect(title).toBe('Jupiter Toys');
+  });
+
+  test('Navigate to contact page from home', async ({ homePage }) => {
+      // Click on the contact link
+      await homePage.clickContactLink();
+
+      // retrieve the current URL
+      const currentUrl = await homePage.getUrl();
+    
+      // Verify the navigation to the contact page
+      expect(currentUrl).toContain('#/contact');
+  });
+
+});
+
 
