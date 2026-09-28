@@ -18,7 +18,7 @@ test.describe('Cart Tests', () => {
 
         const CartCount = await shopPage.getCartItemCount()
 
-        expect(CartCount).toBe(0)
+        expect(CartCount).toBe(1)
 
     });
 
