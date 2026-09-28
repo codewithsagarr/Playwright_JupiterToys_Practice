@@ -11,7 +11,23 @@ npm -v # Should print "11.13.0".
 
 Install playwright using 
  npm init playwright@latest
+ npm install --save-dev @types/node
+ npm install typescript ts-node @types/node --save-dev
 
+tsconfig.json
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "types": [
+            "node"
+        ],
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    }
+}
  Ways of running test
  1. Runs all test : npx playwright test 
  2. Runs test in UI mode : innpx playwright test 2.4.contact.spec.ts --ui

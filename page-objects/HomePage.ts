@@ -61,6 +61,11 @@ export class HomePage extends BasePage {
         await this.page.getByRole('link', { name: 'Contact' }).click()
     }
 
+    async clickShopLink() {
+        // await this.page.click('a[href="#/contact"]');
+        await this.page.getByRole('link', { name: 'Shop' }).click()
+    }
+
     // async getUrl(){
     //      return this.page.url()
     // }
