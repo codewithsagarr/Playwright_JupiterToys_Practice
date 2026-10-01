@@ -170,7 +170,7 @@ The project progressively covers:
 - `beforeEach`
 - Fixtures
 
-See [`notes.md`](Notepad\Notes.md) for detailed learning notes and explanations.
+See [`notes.md`](\Notepad\Notes.md) for detailed learning notes and explanations.
 
 ---
 
