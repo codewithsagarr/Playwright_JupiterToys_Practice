@@ -65,30 +65,6 @@ For environment variable support:
 npm install dotenv
 ```
 
----
-
-## TypeScript Configuration
-
-The project uses the following `tsconfig.json`:
-
-```json
-{
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
-    "types": [
-      "node"
-    ],
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
-}
-```
-
----
-
 ## Running Tests
 
 ### Run all tests
