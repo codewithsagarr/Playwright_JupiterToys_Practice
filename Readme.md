@@ -16,23 +16,12 @@ Verify the Node.js version:
 node -v
 ```
 
-Expected:
-
-```text
-v24.16.0
-```
-
 Verify npm:
 
 ```bash
 npm -v
 ```
 
-Expected:
-
-```text
-11.13.0
-```
 
 - **Node.js** – Runtime environment for running JavaScript/TypeScript.
 - **npm** – Package manager used to install project dependencies.
