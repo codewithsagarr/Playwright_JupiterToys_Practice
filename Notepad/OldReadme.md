@@ -34,8 +34,8 @@ Expected:
 11.13.0
 ```
 
-- **Node.js** – Runtime environment for running JavaScript/TypeScript.
-- **npm** – Package manager used to install project dependencies.
+* **Node.js** – Runtime environment for running JavaScript/TypeScript.
+* **npm** – Package manager used to install project dependencies.
 
 ---
 
@@ -174,25 +174,25 @@ Password: letmein
 
 The project progressively covers:
 
-- Basic page navigation
-- Page title validation
-- Contact form submission
-- Page Object Model (POM)
-- Base classes
-- Mandatory-field validation
-- URL handling
-- Environment variables
-- Headless execution
-- Browser selection using environment variables
-- Multi-device execution
-- Parallel execution
-- Workers
-- Browser input validation
-- Login scenarios
-- Assertions
-- `test.describe`
-- `beforeEach`
-- Fixtures
+* Basic page navigation
+* Page title validation
+* Contact form submission
+* Page Object Model (POM)
+* Base classes
+* Mandatory-field validation
+* URL handling
+* Environment variables
+* Headless execution
+* Browser selection using environment variables
+* Multi-device execution
+* Parallel execution
+* Workers
+* Browser input validation
+* Login scenarios
+* Assertions
+* `test.describe`
+* `beforeEach`
+* Fixtures
 
 See [`notes.md`](notes.md) for detailed learning notes and explanations.
 
@@ -200,14 +200,14 @@ See [`notes.md`](notes.md) for detailed learning notes and explanations.
 
 ## Useful Commands
 
-| Purpose | Command |
-|---|---|
-| Run all tests | `npx playwright test` |
-| Run UI mode | `npx playwright test --ui` |
-| Run specific test | `npx playwright test <file> -g "<test name>"` |
-| Open Codegen | `npx playwright codegen <URL>` |
-| Check Node version | `node -v` |
-| Check npm version | `npm -v` |
+| Purpose            | Command                                       |
+| ------------------ | --------------------------------------------- |
+| Run all tests      | `npx playwright test`                         |
+| Run UI mode        | `npx playwright test --ui`                    |
+| Run specific test  | `npx playwright test <file> -g "<test name>"` |
+| Open Codegen       | `npx playwright codegen <URL>`                |
+| Check Node version | `node -v`                                     |
+| Check npm version  | `npm -v`                                      |
 
 ---
 
@@ -216,35 +216,23 @@ See [`notes.md`](notes.md) for detailed learning notes and explanations.
 A typical project structure:
 
 ```text
-Jupiter-Tiys-HandsOn/
-|-- .git
-|-- .github
-|-- node_modules
-|-- Notepad
-|-- page-objects
-|   |-- BasePage.ts
-|   |-- cartPage.ts
-|   |-- CheckoutPage.ts
-|   |-- ContactPage.ts
-|   |-- HomePage.ts
-|   |-- ShopPage.ts
-|-- playwright-report
-|-- test-results
-|-- tests
-|   |-- config
-|   |   |   |-- validateEnv.ts
-|   |-- fixtures
-|   |   |   |-- fixtures.ts
-|   |-- cart.spec.ts
-|   |-- contact.spec.ts
-|   |-- home.spec.ts
-|   |-- login.spec.ts
-|   |-- shopping.spec.ts
-|-- .env
-|-- .gitignore
-|-- package-lock.json
-|-- package.json
-|-- playwright.config.ts
-|-- Readme.md
-|-- tsconfig.json
+project/
+│
+├── tests/
+│   ├── 2.1.homepage.spec.ts
+│   ├── 2.3.contact.spec.ts
+│   ├── 2.4.contact.spec.ts
+│   └── ...
+│
+├── pages/
+│   └── ...
+│
+├── fixtures/
+│   └── ...
+│
+├── playwright.config.ts
+├── tsconfig.json
+├── package.json
+├── README.md
+└── notes.md
 ```

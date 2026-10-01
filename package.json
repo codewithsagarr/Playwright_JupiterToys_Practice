@@ -3,12 +3,27 @@
   "version": "1.0.0",
   "description": "Getting Started",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "Regression": "playwright test",
+    "Regression-Headless": "cross-env HEADLESS=true npx playwright test",
+    "Regression-Headed": "cross-env HEADLESS=false npx playwright test",
+    "Regression-Headless-Parallel": "cross-env HEADLESS=true FULLY_PARALLEL=true npx playwright test",
+    "Regression-Headed-Parallel": "cross-env HEADLESS=false FULLY_PARALLEL=true npx playwright test",
+    "Regression-Headless-Chromium": "cross-env HEADLESS=true BROWSER=chromium npx playwright test",
+    "Regression-Headless-Firefox": "cross-env HEADLESS=true BROWSER=firefox npx playwright test"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.60.0",
-    "@types/node": "^25.9.1"
+    "@types/node": "^25.9.2",
+    "cross-env": "^10.1.0",
+    "playwright": "^1.60.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
   }
 }

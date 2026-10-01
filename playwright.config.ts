@@ -1,4 +1,55 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import{ browserName, deviceType, workers, fullyParallel } from './tests/config/validateEnv'
+
+// dotenv.config();
+
+// const workers = process.env.WORKERS ? parseInt(process.env.WORKERS, 10) : undefined;
+
+// const fullyParallel = process.env.FULLY_PARALLEL === 'true';
+
+
+//define the browser names we are interested in
+// type BrowserName = 'chromium' | 'firefox' | 'webkit';
+
+// read the BROWSER env variable
+// const browserName = (process.env.BROWSER || 'chromium') as BrowserName;
+
+/* projects without device types
+const projects = [
+  {
+    name: 'chromium',
+    use: { ...devices['Desktop Chrome'] },
+  },
+  {
+    name: 'firefox',
+    use: { ...devices['Desktop Firefox'] },
+  },
+  {
+    name: 'webkit',
+    use: { ...devices['Desktop Safari'] },
+  }];
+*/
+
+
+
+  // define the type of device we are interested in
+// type DeviceType = 'desktop' | 'mobile';
+// const deviceType = (process.env.DEVICE || 'desktop') as DeviceType;
+
+const projects = [
+  {
+    name: 'chromium',
+    use: deviceType === 'desktop' ? { ...devices['Desktop Chrome'] } : { ...devices['Pixel 5'] },
+  },
+  {
+    name: 'firefox',
+    use: { ...devices['Desktop Firefox'] }, 
+  },
+  {
+    name: 'webkit',
+    use: deviceType === 'desktop' ? { ...devices['Desktop Safari'] } : { ...devices['iPhone 12'] },
+}];
 
 /**
  * Read environment variables from file.
@@ -14,17 +65,30 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  // fullyParallel: true,
+  fullyParallel: fullyParallel, // Set fullyParallel based on the FULLY_PARALLEL environment variable
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  //Below performs 3 retries
+  retries: process.env.CI ? 2 : 3, 
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  //  workers: 2,
+  // workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  workers: workers, // Set the number of workers based on the WORKERS environment variable
+  // reporter: 'html',
+  reporter: [
+    ['html', {
+      outputFolder: 'playwright-report',
+      open: 'never'
+    }]
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+
+    //playwright knows what browser we wish to use
+    // browserName,
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
@@ -34,7 +98,11 @@ export default defineConfig({
     actionTimeout: 0, //0 means no limit. It will wait until the action is performed. By default, it is 30 seconds. If the action is not performed within that time, it will throw a timeout error. We can change this default timeout by setting the actionTimeout option in the use object.
     navigationTimeout: 0, //0 means no limit. It will wait until the navigation is performed. By default, it is 30 seconds. If the navigation is not performed within that time, it will throw a timeout error. We can change this default timeout by setting the navigationTimeout option in the use object.
 
-    headless: false,
+    // headless: false,
+    // headless: true,
+    headless: process.env.HEADLESS === 'true', // Use the HEADLESS environment variable
+    screenshot: 'only-on-failure', // Take screenshots only on test failure
+
     // Slowdown playwright during demo or debugging, it will wait for 1 second after each action
     launchOptions: {
       slowMo: 1000
@@ -48,42 +116,44 @@ export default defineConfig({
   },
 
   /* Configure projects for major browsers */
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
+  //Running specific browser
+  projects: projects.filter(project => project.name === browserName),
+  // projects: [
+  // {
+  //   name: 'chromium',
+  //   use: { ...devices['Desktop Chrome'] },
+  // },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
+  // {
+  //   name: 'firefox',
+  //   use: { ...devices['Desktop Firefox'] },
+  // },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+  // {
+  //   name: 'webkit',
+  //   use: { ...devices['Desktop Safari'] },
+  // },
 
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
+  /* Test against mobile viewports. */
+  // {
+  //   name: 'Mobile Chrome',
+  //   use: { ...devices['Pixel 5'] },
+  // },
+  // {
+  //   name: 'Mobile Safari',
+  //   use: { ...devices['iPhone 12'] },
+  // },
 
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
-  ],
+  /* Test against branded browsers. */
+  // {
+  //   name: 'Microsoft Edge',
+  //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+  // },
+  // {
+  //   name: 'Google Chrome',
+  //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+  // },
+  // ],
 
   /* Run your local dev server before starting the tests */
   // webServer: {
